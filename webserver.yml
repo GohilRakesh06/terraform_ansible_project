@@ -1,0 +1,20 @@
+- hosts: all
+  tasks:
+    - name: "install httpd"
+      package:
+        name: "httpd"
+        state: present
+    - name: "copy files "
+      copy:
+        src: "/root/index.html"
+        dest: "/var/www/html"
+
+    - name: "disable firewall"
+      service:
+        name: "firewalld"
+        state: stopped
+
+    - name: "start service"
+      service:
+        name: "httpd"
+        state: started
