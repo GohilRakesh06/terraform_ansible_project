@@ -3,11 +3,11 @@ output "rg_name" {
 }
 
 output "vm_public_ips" {
-  value = azurerm_public_ip.vm-publicip[count.index].ip_address
+  value = [for ip in azurerm_public_ip.vm-publicip : ip.ip_address]
 }
 
 
 
 output "vm_names" {
-  value = azurerm_linux_virtual_machine.machine1[count.index].name
+  value = [for ip in azurerm_public_ip.vm-publicip : ip.ip_address]
 }
